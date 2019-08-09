@@ -25,7 +25,7 @@ SECRET_KEY = 'c=mhdxwy5)uehk!lkf^t-9v+skd+snbg%^x8ccwtkmm$z0g8=#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", ".now.sh", "educarsiempre.live"]
+ALLOWED_HOSTS = ["localhost", "herokuapp.com", "educarsiempre.live"]
 
 
 # Application definition
