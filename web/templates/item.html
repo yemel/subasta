@@ -39,6 +39,12 @@
             <h1><span class="badge badge-info">$1,400</span></h1>
             <span><i>hace 5 minutos</i></span>
             <hr/>
+        </div>
+    </div>
+
+    {% if logged %}
+    <div class="container-fluid">
+        <div style="text-align: center">
             <h4>Tu oferta</h4>
             <div class="btn-toolbar" data-toggle="buttons" style="justify-content: center;">
                 <div class="btn-group mr-2" role="group">
@@ -49,7 +55,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="container-fluid">
         <div class="row" style="justify-content: center;">
                 <div class="col-6">
@@ -63,12 +69,26 @@
                 </div>
             </div>
     </div>
+
     <div class="container-fluid">
         <div class="col">
             <div class="row">
                 <!-- <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Ofertar $1,900</button> -->
-                <a href="success.html" class="btn btn-outline-info btn-lg btn-block offer">Ofertar $1,900</a>
+                <a href="/success" class="btn btn-outline-info btn-lg btn-block offer">Ofertar $1,900</a>
             </div>
         </div>
     </div>
+    {% endif %}
+
+    {% if not logged %}
+        <hr/>
+        <div class="container-fluid">
+            <div class="col">
+                <div class="row">
+                    <a href="/register?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
