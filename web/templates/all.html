@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}#EducarSiempre.live{% endblock %}
+
+{% block content %}
+    {% include "_nav.html" with selected='all' %}
+
+    <div class="container-fluid">
+        <br/>
+
+        {% for item in items %}
+        <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
+            <div class="media">
+                <img class="mr-3" src="{% static item.url %}"" style="max-width: 15%">
+                <div class="media-body">
+                    <h5 class="mt-0">
+                        {{ item.name }}
+                        <span class="badge badge-info" style="float: right;margin-right: 1rem;">$1,400</span>
+                    </h5>
+                    <p>{{ item.desc }}</p>
+                    <p>
+                </div>
+            </div>
+        </a>
+        <hr/>
+        {% endfor %}
+    </div>
+{% endblock %}

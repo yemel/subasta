@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from web import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.all_auctions),
+    url(r'^active$', views.active_auctions),
+    url(r'^item/(?P<id>[0-9]+)$', views.item),
 ]
