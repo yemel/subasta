@@ -12,3 +12,4 @@ pytz==2019.2
 singledispatch==3.4.0.3
 six==1.12.0
 wrapt==1.11.2
+django_heroku==0.3.1
