@@ -21,6 +21,10 @@ def active_auctions(request):
 
 def item(request, id=None):
     item = ITEMS[int(id) - 1]
+    if request.method == 'POST' and int(request.POST.get('options')) > item['price']:
+        item['price'] = int(request.POST.get('options'))
+        return HttpResponseRedirect('/success')
+
     return render(request, 'item.html', {'item': item, 'logged': request.session.get('logged')})
 
 def register(request):

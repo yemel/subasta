@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block style %}
     .item-img {
@@ -36,28 +37,30 @@
     <div class="container-fluid">
         <div style="text-align: center">
             <h4>Precio actual</h4>
-            <h1><span class="badge badge-info">$1,400</span></h1>
+            <h1><span class="badge badge-info">${{ item.price|intcomma }}</span></h1>
             <span><i>hace 5 minutos</i></span>
             <hr/>
         </div>
     </div>
 
     {% if logged %}
+    <form method="POST">
+    {% csrf_token %}
     <div class="container-fluid">
         <div style="text-align: center">
             <h4>Tu oferta</h4>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-lg btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked style="display:none;"> $1,600
+                    <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;"> ${{ item.price|add:200|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option2" autocomplete="off" style="display:none;"> $1,800
+                    <input type="radio" name="options" id="option2" value="{{ item.price|add:400 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:400|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" autocomplete="off" style="display:none;"> $2,000
+                    <input type="radio" name="options" id="option3" value="{{ item.price|add:600 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:600|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" autocomplete="off" style="display:none;"> OTRO
+                    <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:1000|intcomma }}
                 </label>
             </div>
         </div>
@@ -80,11 +83,11 @@
     <div class="container-fluid">
         <div class="col">
             <div class="row">
-                <!-- <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Ofertar $1,900</button> -->
-                <a href="/success" class="btn btn-outline-info btn-lg btn-block offer">Ofertar $1,600</a>
+                <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Ofertar</button>
             </div>
         </div>
     </div>
+    </form>
     {% endif %}
 
     {% if not logged %}

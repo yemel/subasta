@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block title%}#EducarSiempre.live{% endblock %}
 
@@ -16,7 +17,7 @@
                 <div class="media-body">
                     <h5 class="mt-0">
                         {{ item.name }}
-                        <span class="badge badge-success" style="float: right;margin-right: 1rem;">$1,400</span>
+                        <span class="badge badge-success" style="float: right;margin-right: 1rem;">${{ item.price|intcomma }}</span>
                     </h5>
                     <p>{{ item.desc }}</p>
                     <p>
@@ -33,7 +34,7 @@
                 <div class="media-body">
                     <h5 class="mt-0">
                         {{ item.name }}
-                        <span class="badge badge-warning" style="float: right;margin-right: 1rem;">$1,400</span>
+                        <span class="badge badge-warning" style="float: right;margin-right: 1rem;">${{ item.price|intcomma }}</span>
                     </h5>
                     <p>{{ item.desc }}</p>
                     <p>
