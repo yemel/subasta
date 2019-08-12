@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from web.models import Product, Bid, User
 
@@ -59,3 +59,12 @@ def register(request):
 def success(request, id=None):
     bid = Bid.objects.get(id=id)
     return render(request, 'success.html', {'bid': bid})
+
+def results(request):
+    total = sum([p.total_price() for p in Product.objects.all()])
+    return render(request, 'results.html', {'total': total})
+
+
+def api_result(request):
+    total = sum([p.total_price() for p in Product.objects.all()])
+    return HttpResponse(total, content_type="application/json")

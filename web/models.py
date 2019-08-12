@@ -28,6 +28,10 @@ class Product(models.Model):
         bid = self.winner_bid()
         return bid and bid.price or self.start_price
 
+    def total_price(self):
+        bid = self.winner_bid()
+        return bid and bid.price or 0
+
     def __unicode__(self):
         return self.name
 
