@@ -8,9 +8,9 @@ from django.http import HttpResponseRedirect
 from web.models import Product, Bid, User
 
 class RegisterForm(forms.Form):
-    full_name = forms.CharField(max_length=100)
-    phone = forms.CharField(max_length=20)
-    email = forms.EmailField(max_length=75)
+    pingo = forms.CharField(max_length=100)
+    wango = forms.CharField(max_length=20)
+    tacho = forms.EmailField(max_length=75)
 
 def get_user(request):
     user_id = request.session.get('user')
@@ -40,16 +40,21 @@ def item(request, id=None):
     return render(request, 'item.html', {'item': item, 'usr': user})
 
 def register(request):
+    user = get_user(request)
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = User.objects.create(**form.cleaned_data)
+            user = User.objects.create(
+                full_name=form.cleaned_data['pingo'],
+                phone=form.cleaned_data['wango'],
+                email=form.cleaned_data['tacho']
+            )
             request.session['user'] = user.id
             return HttpResponseRedirect('/item/' + request.GET.get('id', 1))
     else:
         form = RegisterForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form, 'usr': user})
 
 def success(request, id=None):
     bid = Bid.objects.get(id=id)

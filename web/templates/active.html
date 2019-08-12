@@ -11,6 +11,10 @@
     <div class="container-fluid">
         <br/>
 
+        {% if not items %}
+            <i>Aún no has participado de ninguna subasta.</i>
+        {% endif %}
+
         {% for item in items %}
         <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
             <div class="media">

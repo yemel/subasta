@@ -2,7 +2,9 @@
     <li class="nav-item">
         <a class="nav-link {% if selected == "all" %}active{% endif %}" href="/">Subastas</a>
     </li>
+    {% if usr and usr.bid_set.exists %}
     <li class="nav-item">
         <a class="nav-link {% if selected == "active" %}active{% endif %}" href="/active">Mis subastas</a>
     </li>
+    {% endif %}
 </ul>
