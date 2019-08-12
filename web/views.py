@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.sessions.models import Session
 
 from web.models import Product, Bid, User, Donation
 
@@ -89,3 +90,11 @@ def donations(request):
             return HttpResponseRedirect('/donations')
 
     return render(request, 'donations.html', {'form': form})
+
+def reset(request):
+    if request.method == 'POST':
+        User.objects.all().delete()
+        Session.objects.all().delete()
+        return HttpResponseRedirect('/')
+
+    return render(request, 'reset.html')
