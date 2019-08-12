@@ -1,3 +1,4 @@
+{% load humanize %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -171,8 +172,8 @@
         <br/>
         <div class="row">
             <div class="col">
-                <h2>¡Felicitaciones Amit!</h2>
-                <p>Ofertaste $1,900 por Camiseta Puma</p>
+                <h2>¡Felicitaciones {{ bid.user.name }}!</h2>
+                <p>Ofertaste ${{ bid.price|intcomma }} por {{bid.product.name}}</p>
             </div>
         </div>
         <br/><br/>
