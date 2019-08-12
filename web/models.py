@@ -43,3 +43,16 @@ class Bid(models.Model):
 
     def __unicode__(self):
         return '$%s -> %s' % (self.price, self.product)
+
+
+class Donation(models.Model):
+    raffle = models.PositiveIntegerField(default=0)
+    auction_1 = models.PositiveIntegerField(default=0)
+    auction_2 = models.PositiveIntegerField(default=0)
+    auction_3 = models.PositiveIntegerField(default=0)
+    auction_4 = models.PositiveIntegerField(default=0)
+    subscriptions = models.PositiveIntegerField(default=0)
+    others = models.PositiveIntegerField(default=0)
+
+    def total(self):
+        return sum([self.raffle, self.auction_1, self.auction_2, self.auction_3, self.auction_4, self.subscriptions, self.others])

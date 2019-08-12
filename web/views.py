@@ -5,7 +5,7 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 
-from web.models import Product, Bid, User
+from web.models import Product, Bid, User, Donation
 
 class RegisterForm(forms.Form):
     pingo = forms.CharField(max_length=100)
@@ -15,6 +15,10 @@ class RegisterForm(forms.Form):
 def get_user(request):
     user_id = request.session.get('user')
     return user_id and User.objects.get(id=user_id) or None
+
+def get_total_donations():
+    donation, _ = Donation.objects.get_or_create(id=1)
+    return donation.total() + sum([p.total_price() for p in Product.objects.all()])
 
 def all_auctions(request):
     user = get_user(request)
@@ -61,10 +65,27 @@ def success(request, id=None):
     return render(request, 'success.html', {'bid': bid})
 
 def results(request):
-    total = sum([p.total_price() for p in Product.objects.all()])
+    total = get_total_donations()
     return render(request, 'results.html', {'total': total})
 
 
 def api_result(request):
-    total = sum([p.total_price() for p in Product.objects.all()])
+    total = get_total_donations()
     return HttpResponse(total, content_type="application/json")
+
+
+class DonationForm(forms.ModelForm):
+    class Meta:
+        model = Donation
+        exclude = []
+
+def donations(request):
+    donation, _ = Donation.objects.get_or_create(id=1)
+    form = DonationForm(instance=donation)
+    if request.method == 'POST':
+        form = DonationForm(request.POST, instance=donation)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/donations')
+
+    return render(request, 'donations.html', {'form': form})

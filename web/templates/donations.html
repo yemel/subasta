@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Datos de contacto{% endblock %}
+
+
+{% block content %}
+    {% include "_nav.html" %}
+
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <br/>
+                    <h2>Datos de contacto</h2>
+                    <p>Te contactaremos en caso que ganes una subasta.</p>
+                    {{ form.errors }}
+                    <fieldset class="form-group">
+                        <label for="raffle" class="bmd-label-floating">Rifas</label>
+                        {% render_field form.raffle class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="auction_1" class="bmd-label-floating">Subasta 1</label>
+                        {% render_field form.auction_1 class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="auction_2" class="bmd-label-floating">Subasta 2</label>
+                        {% render_field form.auction_2 class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="auction_3" class="bmd-label-floating">Subasta 3</label>
+                        {% render_field form.auction_3 class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="auction_4" class="bmd-label-floating">Subasta 4</label>
+                        {% render_field form.auction_4 class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="subscriptions" class="bmd-label-floating">Suscripciones</label>
+                        {% render_field form.subscriptions class="form-control" autocomplete="off" %}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="others" class="bmd-label-floating">Otros</label>
+                        {% render_field form.others class="form-control" autocomplete="off" %}
+                    </fieldset>
+                </div>
+            </div
+        </div>
+        <br/>
+        <div class="container-fluid">
+            <div class="col">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

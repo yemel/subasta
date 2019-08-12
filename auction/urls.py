@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^register$', views.register),
     url(r'^success/(?P<id>[0-9]+)$', views.success),
     url(r'^total$', views.results),
+    url(r'^donations$', views.donations),
     url(r'^api/total$', views.api_result),
 ]
