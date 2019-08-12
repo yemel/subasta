@@ -30,7 +30,8 @@ def item(request, id=None):
     user = get_user(request)
 
     if request.method == 'POST':
-        bid_price = int(request.POST.get('options'))
+        bid_price = request.POST.get('options')
+        bid_price = int(request.POST.get('amount')) if bid_price == "OTHER" else int(bid_price)
 
         if bid_price > item.price():
             bid = Bid.objects.create(user=user, product=item, price=bid_price)

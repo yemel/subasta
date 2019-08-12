@@ -20,6 +20,16 @@
     }  
 {% endblock %}
 
+{% block script %}
+function onChange() {
+    var value = $("input[name='options']:checked"). val();
+    $('#custom-price').toggle(value == 'OTHER');
+    $('#amount').prop('required', value == 'OTHER');
+    $('#amount').val(null);
+}
+
+{% endblock %}
+
 
 {% block title %}{{ item.name }}{% endblock %}
 
@@ -60,34 +70,32 @@
             <h4>Tu oferta</h4>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-lg btn-secondary active">
-                    <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;"> ${{ item.price|add:200|intcomma }}
+                    <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:200|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option2" value="{{ item.price|add:400 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:400|intcomma }}
+                    <input type="radio" name="options" id="option2" value="{{ item.price|add:500 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:500|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" value="{{ item.price|add:600 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:600|intcomma }}
+                    <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:1000|intcomma }}
                 </label>
                 <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;"> ${{ item.price|add:1000|intcomma }}
+                    <input type="radio" name="options" id="option3" value="OTHER" autocomplete="off" style="display:none;" onchange="onChange()"> OTRO
                 </label>
             </div>
         </div>
     </div>
     
-    {% comment %} <div class="container-fluid">
+    <div id="custom-price" class="container-fluid" style="display: none;">
         <div class="row" style="justify-content: center;">
                 <div class="col-6">
-                    <form>
-                        <fieldset class="form-group">
-                            <label for="amount" class="bmd-label-floating">Nuevo monto</label>
-                            <input type="number" class="form-control" id="amount">
-                            <span class="bmd-help">Ingresa un valor superior a $1,900.</span>
-                        </fieldset>
-                    </form>
+                    <fieldset class="form-group">
+                        <label for="amount" class="bmd-label-floating">Nuevo monto</label>
+                        <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:100}}">
+                        <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:100|intcomma }}.</span>
+                    </fieldset>
                 </div>
             </div>
-    </div> {% endcomment %}
+    </div>
 
     <div class="container-fluid">
         <div class="col">
