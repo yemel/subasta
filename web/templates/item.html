@@ -22,10 +22,15 @@
 
 {% block script %}
 function onChange() {
-    var value = $("input[name='options']:checked"). val();
+    var value = $("input[name='options']:checked").val();
     $('#custom-price').toggle(value == 'OTHER');
     $('#amount').prop('required', value == 'OTHER');
     $('#amount').val(null);
+}
+
+function userConfirm(name) {
+    var price = $('#amount').val() || $("input[name='options']:checked").val();
+    return confirm('Estás por ofertar $' + price + ' por ' + name + '. \n¿Deseas continuar?')
 }
 
 {% endblock %}
@@ -63,7 +68,7 @@ function onChange() {
     </div>
 
     {% if usr and item|color:usr != 'success' %}
-    <form method="POST">
+    <form method="POST" onsubmit='return userConfirm("{{item.name}}")'>
     {% csrf_token %}
     <div class="container-fluid">
         <div style="text-align: center">
