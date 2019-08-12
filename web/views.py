@@ -16,36 +16,33 @@ def get_user(request):
     user_id = request.session.get('user')
     return user_id and User.objects.get(id=user_id) or None
 
-# Create your views here.
 def all_auctions(request):
-    return render(request, 'all.html', {'items': Product.objects.order_by('id')})
+    user = get_user(request)
+    return render(request, 'all.html', {'items': Product.objects.order_by('id'), 'usr': user})
 
 def active_auctions(request):
     user = get_user(request)
     items = Product.objects.filter(bid__user=user).distinct().order_by('id')
-    return render(request, 'active.html', {'items': items})
+    return render(request, 'active.html', {'items': items, 'usr': user})
 
 def item(request, id=None):
     item = Product.objects.get(id=id)
-    print item
+    user = get_user(request)
 
     if request.method == 'POST':
         bid_price = int(request.POST.get('options'))
-        user = User.objects.get(id=request.session['user'])
 
-        print bid_price, user, item.price
         if bid_price > item.price():
             bid = Bid.objects.create(user=user, product=item, price=bid_price)
             return HttpResponseRedirect('/success/%s' % bid.id)
 
-    return render(request, 'item.html', {'item': item, 'logged': request.session.get('logged')})
+    return render(request, 'item.html', {'item': item, 'usr': user})
 
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = User.objects.create(**form.cleaned_data)
-            request.session['logged'] = 'TRUE'
             request.session['user'] = user.id
             return HttpResponseRedirect('/item/' + request.GET.get('id', 1))
     else:

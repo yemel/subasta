@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+{% load filters %}
 
 {% block style %}
     .item-img {
@@ -37,13 +38,21 @@
     <div class="container-fluid">
         <div style="text-align: center">
             <h4>Precio actual</h4>
-            <h1><span class="badge badge-info">${{ item.price|intcomma }}</span></h1>
-            <span><i>hace 5 minutos</i></span>
-            <hr/>
+            <h1><span class="badge badge-{{item|color:usr}}">${{ item.price|intcomma }}</span></h1>
+            {% if item|color:usr == 'success' %}
+                <span><i>Estás ganando la subasta hace {{ item.winner_bid.created|timesince }}</i></span>
+                <hr/><br/>
+                <a href="/" class="btn btn-outline-info btn-lg">Ver todas las subastas</a>
+            {% else %}
+                {% if item.winner_bid %}
+                    <span><i>hace {{ item.winner_bid.created|timesince }}</i></span>
+                {% endif %}
+                <hr/>
+            {% endif %}
         </div>
     </div>
 
-    {% if logged %}
+    {% if usr and item|color:usr != 'success' %}
     <form method="POST">
     {% csrf_token %}
     <div class="container-fluid">
@@ -90,7 +99,7 @@
     </form>
     {% endif %}
 
-    {% if not logged %}
+    {% if not usr %}
         <hr/>
         <div class="container-fluid">
             <div class="col">

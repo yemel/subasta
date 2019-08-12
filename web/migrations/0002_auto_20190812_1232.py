@@ -35,7 +35,7 @@ ITEMS = [
 
 def create_products(apps, schema_editor):
     for item in ITEMS:
-        Product.objects.create(name=item['name'], image=item['url'], description=item['desc'], start_price=500)
+        Product.objects.create(name=item['name'], image=item['url'], description=item['desc'], start_price=100)
 
 
 class Migration(migrations.Migration):
