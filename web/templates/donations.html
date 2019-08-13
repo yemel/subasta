@@ -16,6 +16,7 @@
                     <h2>Montos recadudados</h2>
                     <p>Estos números afectan al contador general.</p>
                     <fieldset class="form-group">
+                        {% render_field form.enabled  style="display: none;" %}
                         <label for="others" class="bmd-label-floating">Entradas</label>
                         {% render_field form.others class="form-control" autocomplete="off" %}
                     </fieldset>
