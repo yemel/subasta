@@ -54,7 +54,6 @@ class Bid(models.Model):
     def __unicode__(self):
         return '$%s -> %s' % (self.price, self.product)
 
-res
 class Donation(models.Model):
     enabled = models.BooleanField(default=True)
     raffle = models.PositiveIntegerField(default=0)
