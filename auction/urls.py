@@ -27,5 +27,8 @@ urlpatterns = [
     url(r'^total$', views.results),
     url(r'^donations$', views.donations),
     url(r'^reset$', views.reset),
+    url(r'^winners$', views.winners),
+    url(r'^status$', views.status),
+    url(r'^products$', views.products),
     url(r'^api/total$', views.api_result),
 ]

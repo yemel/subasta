@@ -1,4 +1,6 @@
 {% load humanize %}
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,6 +14,8 @@
 
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 
     <style>
         html,
@@ -20,20 +24,8 @@
         }
 
         body {
-            text-align: center;
             color: white;
-            align-items: center;
             background-color: #5DBCD2;
-            display: flex;
-            justify-content: center;
-        }
-
-        .amount {
-            font-size: 7rem;
-        }
-
-        .amount_desc {
-            font-size: 2.5rem;
         }
 
         .cena {
@@ -50,6 +42,20 @@
             width: 180px;
         }
 
+        .cimg {
+            max-height: 18rem;
+            max-width: 18rem;
+            display: inline-block!important;
+            margin-right: 1rem;
+        }
+
+        .slides {
+            position: relative;
+            top: 35%;
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
+
     </style>
     <title>Educar Siempre</title>
   </head>
@@ -62,13 +68,21 @@
 
     <img src="/static/img/logo.png" class="logo"/>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="amount">$<span id="total">{{ total|intcomma }}</span></div>
-                <div class="amount_desc">TOTAL RECAUDADO</div>
+    <div class="slides">
+        {% for item in items %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4" style="text-align: right;">
+                    <img class="cimg" src="{% static item.image %}">
+                </div>
+                <div class="col-8" style="text-align: left;">
+                    <h1>{{ item.name }}</h2>
+                    <p style="font-size: 1.4rem;">{{ item.description }}</p><br/>
+                    <h1><span class="badge badge-info">${{ item.price|intcomma }}</span></h1>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     
 
@@ -77,23 +91,20 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script src="/static/countUp.min.js" type="module"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-    <script type="module">
-        import { CountUp } from '/static/countUp.min.js';
 
-        var LAST_NUMBER = {{total}};
-        var countUp = new CountUp('total', LAST_NUMBER);
-
-        $(document).ready(function() {
-            countUp.start();
-        })
-
-        window.setInterval(function() {
-            $.get('/api/total', function(res) {
-                countUp.update(res);    
-            })
-        }, 4000);
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.slides').slick({
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 4000,
+                arrows: false,
+            });
+        });
     </script>
+
   </body>
 </html>

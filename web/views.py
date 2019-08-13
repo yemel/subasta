@@ -31,10 +31,11 @@ def active_auctions(request):
     return render(request, 'active.html', {'items': items, 'usr': user})
 
 def item(request, id=None):
+    donation, _ = Donation.objects.get_or_create(id=1)
     item = Product.objects.get(id=id)
     user = get_user(request)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and donation.enabled:
         bid_price = request.POST.get('options')
         bid_price = int(request.POST.get('amount')) if bid_price == "OTHER" else int(bid_price)
 
@@ -42,7 +43,7 @@ def item(request, id=None):
             bid = Bid.objects.create(user=user, product=item, price=bid_price)
             return HttpResponseRedirect('/success/%s' % bid.id)
 
-    return render(request, 'item.html', {'item': item, 'usr': user})
+    return render(request, 'item.html', {'item': item, 'usr': user, 'donation': donation})
 
 def register(request):
     user = get_user(request)
@@ -91,10 +92,31 @@ def donations(request):
 
     return render(request, 'donations.html', {'form': form})
 
+def winners(request):
+    user = get_user(request)
+    return render(request, 'winners.html', {'items': Product.objects.order_by('id'), 'usr': user})
+
+def products(request):
+    return render(request, 'products.html', {'items': Product.objects.order_by('id')})
+
+def status(request):
+    donation, _ = Donation.objects.get_or_create(id=1)
+    user = get_user(request)
+    if request.method == 'POST':
+        donation, _ = Donation.objects.get_or_create(id=1)
+        donation.enabled = request.POST['enabled'] == 'yes'
+        donation.save()
+        return HttpResponseRedirect('/status')
+    
+    return render(request, 'status.html', {'donation': donation, 'usr': user})
+
 def reset(request):
     if request.method == 'POST':
         User.objects.all().delete()
         Session.objects.all().delete()
+        donation, _ = Donation.objects.get_or_create(id=1)
+        donation.reset()
+        donation.save()
         return HttpResponseRedirect('/')
 
     return render(request, 'reset.html')

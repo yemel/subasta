@@ -12,18 +12,21 @@
         <br/>
 
         {% for item in items %}
-        <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
             <div class="media">
                 <img class="mr-3" src="{% static item.image %}"" style="max-width: 15%">
                 <div class="media-body">
-                    <h5 class="mt-0">
-                        {{ item.name }}
-                        <span class="badge badge-{{item|color:usr}}" style="float: right;margin-right: 1rem;">${{ item.price|intcomma }}</span>
-                    </h5>
-                    <p>{{ item.description }}</p>
+                    <h5 class="mt-0">{{ item.name }}</h5>
+                    {% if not item.winners %}
+                        <i>Nadie ofertó por este producto.</i>
+                    {% endif %}
+                    {% for bid in item.winners %}
+                    <div>
+                        {{ bid.user.full_name }} ofertó ${{ bid.price|intcomma }}<br/>
+                        Tel: {{ bid.user.phone }} - Email: {{ bid.user.email }}
+                    </div><br/>
+                    {% endfor %}
                 </div>
             </div>
-        </a>
         <hr/>
         {% endfor %}
     </div>

@@ -17,7 +17,13 @@
     .offer {
         margin: 3rem;
         line-height: 5rem!important;
-    }  
+    } 
+
+    label.btn:focus {
+        color: #fff!important;
+        background-color: #545b62!important;
+        border-color: #4e555b!important;
+    }
 {% endblock %}
 
 {% block script %}
@@ -54,7 +60,7 @@ function userConfirm(name) {
         <div style="text-align: center">
             <h4>Precio actual</h4>
             <h1><span class="badge badge-{{item|color:usr}}">${{ item.price|intcomma }}</span></h1>
-            {% if item|color:usr == 'success' %}
+            {% if item|color:usr == 'success' and donation.enabled %}
                 <span><i>Estás ganando la subasta hace {{ item.winner_bid.created|timesince }}</i></span>
                 <hr/><br/>
                 <a href="/" class="btn btn-outline-info btn-lg">Ver todas las subastas</a>
@@ -67,58 +73,74 @@ function userConfirm(name) {
         </div>
     </div>
 
-    {% if usr and item|color:usr != 'success' %}
-    <form method="POST" onsubmit='return userConfirm("{{item.name}}")'>
-    {% csrf_token %}
-    <div class="container-fluid">
-        <div style="text-align: center">
-            <h4>Tu oferta</h4>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-lg btn-secondary active">
-                    <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:200|intcomma }}
-                </label>
-                <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option2" value="{{ item.price|add:500 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:500|intcomma }}
-                </label>
-                <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:1000|intcomma }}
-                </label>
-                <label class="btn btn-lg btn-secondary">
-                    <input type="radio" name="options" id="option3" value="OTHER" autocomplete="off" style="display:none;" onchange="onChange()"> OTRO
-                </label>
-            </div>
-        </div>
-    </div>
-    
-    <div id="custom-price" class="container-fluid" style="display: none;">
-        <div class="row" style="justify-content: center;">
-                <div class="col-6">
-                    <fieldset class="form-group">
-                        <label for="amount" class="bmd-label-floating">Nuevo monto</label>
-                        <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:100}}">
-                        <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:100|intcomma }}.</span>
-                    </fieldset>
+    {% if donation.enabled %}
+
+        {% if usr and item|color:usr != 'success' %}
+        <form method="POST" onsubmit='return userConfirm("{{item.name}}")'>
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div style="text-align: center">
+                <h4>Tu oferta</h4>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-lg btn-secondary active">
+                        <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:200|intcomma }}
+                    </label>
+                    <label class="btn btn-lg btn-secondary">
+                        <input type="radio" name="options" id="option2" value="{{ item.price|add:500 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:500|intcomma }}
+                    </label>
+                    <label class="btn btn-lg btn-secondary">
+                        <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:1000|intcomma }}
+                    </label>
+                    <label class="btn btn-lg btn-secondary">
+                        <input type="radio" name="options" id="option3" value="OTHER" autocomplete="off" style="display:none;" onchange="onChange()"> OTRO
+                    </label>
                 </div>
             </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="col">
-            <div class="row">
-                <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Ofertar</button>
-            </div>
         </div>
-    </div>
-    </form>
-    {% endif %}
+        
+        <div id="custom-price" class="container-fluid" style="display: none;">
+            <div class="row" style="justify-content: center;">
+                    <div class="col-6">
+                        <fieldset class="form-group">
+                            <label for="amount" class="bmd-label-floating">Nuevo monto</label>
+                            <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:100}}">
+                            <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:100|intcomma }}.</span>
+                        </fieldset>
+                    </div>
+                </div>
+        </div>
 
-    {% if not usr %}
-        <hr/>
         <div class="container-fluid">
             <div class="col">
                 <div class="row">
-                    <a href="/register?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
+                    <button type="submit" class="btn btn-outline-info btn-lg btn-block offer">Ofertar</button>
                 </div>
+            </div>
+        </div>
+        </form>
+        {% endif %}
+
+        {% if not usr %}
+            <hr/>
+            <div class="container-fluid">
+                <div class="col">
+                    <div class="row">
+                        <a href="/register?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    
+    {% else %}
+        <div class="container-fluid">
+            <div style="text-align: center">
+                {% if usr and item|color:usr == 'success' %}
+                    <h4>Ganaste</h4>
+                    <i>¡Felicitaciones! Por favor acercate a la mesa de cómputos para finalizar tu donación. ¡Gracias!</i>
+                {% else %}
+                    <h4>Subasta terminada</h4>
+                    <i>Ya no se aceptan más ofertas.</i>
+                {% endif %}
             </div>
         </div>
     {% endif %}

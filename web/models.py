@@ -32,6 +32,16 @@ class Product(models.Model):
         bid = self.winner_bid()
         return bid and bid.price or 0
 
+    def winners(self):
+        all_bids = self.bid_set.order_by('-price')
+        bids = []
+        for bid in all_bids:
+            if bid.user_id not in [b.user_id for b in bids]:
+                bids.append(bid)
+                if len(bids) == 3:
+                    return bids
+        return bids
+
     def __unicode__(self):
         return self.name
 
@@ -44,8 +54,9 @@ class Bid(models.Model):
     def __unicode__(self):
         return '$%s -> %s' % (self.price, self.product)
 
-
+res
 class Donation(models.Model):
+    enabled = models.BooleanField(default=True)
     raffle = models.PositiveIntegerField(default=0)
     auction_1 = models.PositiveIntegerField(default=0)
     auction_2 = models.PositiveIntegerField(default=0)
@@ -53,6 +64,16 @@ class Donation(models.Model):
     auction_4 = models.PositiveIntegerField(default=0)
     subscriptions = models.PositiveIntegerField(default=0)
     others = models.PositiveIntegerField(default=0)
+
+    def reset(self):
+        self.enabled = True
+        self.raffle = 0
+        self.auction_1 = 0
+        self.auction_2 = 0
+        self.auction_3 = 0
+        self.auction_4 = 0
+        self.subscriptions = 0
+        self.others = 0
 
     def total(self):
         return sum([self.raffle, self.auction_1, self.auction_2, self.auction_3, self.auction_4, self.subscriptions, self.others])

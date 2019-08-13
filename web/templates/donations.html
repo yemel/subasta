@@ -13,8 +13,12 @@
             <div class="row">
                 <div class="col">
                     <br/>
-                    <h2>Datos de contacto</h2>
-                    <p>Te contactaremos en caso que ganes una subasta.</p>
+                    <h2>Montos recadudados</h2>
+                    <p>Estos números afectan al contador general.</p>
+                    <fieldset class="form-group">
+                        <label for="others" class="bmd-label-floating">Entradas</label>
+                        {% render_field form.others class="form-control" autocomplete="off" %}
+                    </fieldset>
                     <fieldset class="form-group">
                         <label for="raffle" class="bmd-label-floating">Rifas</label>
                         {% render_field form.raffle class="form-control" autocomplete="off" %}
@@ -38,10 +42,6 @@
                     <fieldset class="form-group">
                         <label for="subscriptions" class="bmd-label-floating">Suscripciones</label>
                         {% render_field form.subscriptions class="form-control" autocomplete="off" %}
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label for="others" class="bmd-label-floating">Otros</label>
-                        {% render_field form.others class="form-control" autocomplete="off" %}
                     </fieldset>
                 </div>
             </div

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Datos de contacto{% endblock %}
+
+
+{% block content %}
+    {% include "_nav.html" %}
+
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <br/>
+                    <h2>Configuración</h2>
+                </div>
+            </div
+        </div>
+        <br/>
+        <div class="container-fluid">
+            <div class="col">
+                <div class="row">
+                    {% if donation.enabled %}
+                        <button type="submit" value="no" name="enabled" class="btn btn-outline-info btn-lg btn-block offer">Deshabilitar</button>
+                    {% else %}
+                        <button type="submit" value="yes" name="enabled" class="btn btn-outline-info btn-lg btn-block offer">Habilitar</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
