@@ -44,6 +44,19 @@ function userConfirm(name) {
 
 {% block title %}{{ item.name }}{% endblock %}
 
+{% block meta %}
+<!--  Essential META Tags -->
+<meta property="og:title" content="{{item.name}}">
+<meta property="og:description" content="{{item.description}}">
+<meta property="og:image" content="http://educarsiempre.live{% static item.image %}">
+<meta property="og:url" content="http://http://educarsiempre.live/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!--  Non-Essential, But Recommended -->
+<meta property="og:site_name" content="Educar y Crecer">
+<meta name="twitter:image:alt" content="{{item.name}}">
+{% endblock %}
+
 {% block content %}
     {% include "_nav.html" %}
 
