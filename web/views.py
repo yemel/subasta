@@ -32,11 +32,8 @@ def active_auctions(request):
 
 def item(request, id=None):
     donation, _ = Donation.objects.get_or_create(id=1)
+    item = Product.objects.get(id=id)
     user = get_user(request)
-    if id:
-        item = Product.objects.get(id=id)
-    else:
-        item = Product.objects.last()
 
     if request.method == 'POST' and donation.enabled:
         bid_price = request.POST.get('options')

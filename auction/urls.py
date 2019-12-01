@@ -19,8 +19,7 @@ from web import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^$', views.all_auctions),
-    url(r'^$', views.item),
+    url(r'^$', views.all_auctions),
     url(r'^active$', views.active_auctions),
     url(r'^item/(?P<id>[0-9]+)$', views.item),
     url(r'^register$', views.register),
