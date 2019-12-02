@@ -1,13 +1,12 @@
-<ul class="nav nav-tabs bg-dark">
-    <li class="nav-item">
-        <a class="nav-link {% if selected == "all" %}active{% endif %}" href="/">Subastas</a>
+{% load static %}
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/"><img style="height: 2.6rem; margin: 10px 16px;" src="{% static 'img/logo2.png' %}"/></a>
     </li>
+    <!-- <li class="nav-item">
+        <a class="nav-link {% if selected == "all" %}active{% endif %}" href="/">Subastas</a>
+    </li> -->
     <!-- <li class="nav-item ml-auto">
         <a style="font-size: 10; font-weight: 300;text-transform: none;" class="nav-link" href="mailto:nocheargentina@mensajerosdelapaz.org.ar">nocheargentina@mensajerosdelapaz.org.ar</a>
     </li> -->
-    {% if usr and usr.bid_set.exists %}
-    <li class="nav-item">
-        <a class="nav-link {% if selected == "active" %}active{% endif %}" href="/active">Mis subastas</a>
-    </li>
-    {% endif %}
 </ul>
