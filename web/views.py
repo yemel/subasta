@@ -122,7 +122,7 @@ def donations(request):
         form = DonationForm(request.POST, instance=donation)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/donations')
+            return HttpResponseRedirect('/donaciones')
 
     return render(request, 'donations.html', {'form': form})
 
@@ -140,7 +140,7 @@ def status(request):
         donation, _ = Donation.objects.get_or_create(id=1)
         donation.enabled = request.POST['enabled'] == 'yes'
         donation.save()
-        return HttpResponseRedirect('/status')
+        return HttpResponseRedirect('/subasta')
     
     return render(request, 'status.html', {'donation': donation, 'usr': user})
 
