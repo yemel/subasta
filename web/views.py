@@ -30,11 +30,11 @@ def get_total_donations():
 def all_auctions(request):
     user = get_user(request)
     if user:
-        active_items = Product.objects.filter(bid__user=user).distinct().order_by('id')
-        other_items = Product.objects.exclude(id__in=[p.id for p in active_items]).order_by('id')
+        active_items = Product.objects.filter(bid__user=user).distinct().order_by('order')
+        other_items = Product.objects.exclude(id__in=[p.id for p in active_items]).order_by('order')
     else:
         active_items = []
-        other_items = Product.objects.all()
+        other_items = Product.objects.all().order_by('order')
 
     return render(request, 'all.html', {'active_items': active_items, 'other_items': other_items, 'usr': user})
 
