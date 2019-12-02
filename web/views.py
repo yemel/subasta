@@ -17,7 +17,6 @@ class RegisterForm(forms.Form):
 
 
 def get_user(request):
-    print request.user
     return None if request.user.is_anonymous() else request.user
 
 
@@ -89,7 +88,6 @@ def results(request):
 
 
 def api_signin(request, id, microsecond):
-    print(id, microsecond)
     u = User.objects.get(id=id)
     if u.created.microsecond == int(microsecond):
         login(request, u)
