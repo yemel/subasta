@@ -94,6 +94,15 @@ def api_signin(request, id, microsecond):
     return HttpResponseRedirect('/')
 
 
+def api_wining(request, id):
+    user = get_user(request)
+    product = Product.objects.get(id=id)
+    user_bid = product.bid_set.filter(user=user).order_by('-price').first()
+    winner = product.winner_bid()
+    response = 1 if user_bid.id == winner.id else 0
+    return HttpResponse(response, content_type="application/json")
+
+
 def api_result(request):
     total = get_total_donations()
     return HttpResponse(total, content_type="application/json")

@@ -39,6 +39,14 @@ function userConfirm(name) {
     return confirm('Estás por ofertar €' + price + ' por ' + name + '. \n¿Deseas continuar?')
 }
 
+{% if item|color:usr == 'success' and donation.enabled %}
+window.setInterval(function() {
+    $.get('/api/wining/{{ item.id }}', function(a) {
+        if (a == 0) window.location.reload();
+    })
+}, 4000);
+{% endif %}
+
 {% endblock %}
 
 
