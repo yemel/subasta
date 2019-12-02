@@ -168,8 +168,9 @@ window.setInterval(function() {
         {% endif %}
     
     {% else %}
+        <br/>
         <div class="container-fluid">
-            <div style="text-align: center">
+            <div class="card" style="text-align: center">
                 {% if usr and item|color:usr == 'success' %}
                     <h4>Ganaste</h4>
                     <i>¡Felicitaciones! Te contactaremos a la brevedad para concretar el pago y entregarte {{ item.name }}.<br/>Podés escribirnos a: <a href="mailto:nocheargentina@mensajerosdelapaz.org.ar">nocheargentina@mensajerosdelapaz.org.ar</a></i>
