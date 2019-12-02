@@ -13,7 +13,7 @@
 
         {% for item in items %}
             <div class="media">
-                <img class="mr-3" src="{% static item.image %}"" style="max-width: 15%">
+                <img class="mr-3" src="{% static item.image %}" style="max-width: 15%">
                 <div class="media-body">
                     <h5 class="mt-0">{{ item.name }}</h5>
                     {% if not item.winners %}
