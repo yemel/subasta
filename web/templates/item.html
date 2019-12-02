@@ -64,16 +64,16 @@ function userConfirm(name) {
     <div class="container-fluid item-img">
         <div class="row align-items-end" style="height: 100%; color: white;">
             <div class="col">
-                <h2>{{ item.name }}</h2>
-                <p>{{ item.description|linebreaksbr }}</p>
+                <h2 style="font-size:1.2rem;">{{ item.name }}</h2>
+                <p style="font-size:0.8rem;">{{ item.description|linebreaksbr }}</p>
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
-        <div style="text-align: center">
-            <h4>Precio actual</h4>
-            <h1><span class="badge badge-{{item|color:usr}}">€{{ item.price|intcomma }}</span></h1>
+        <div class="card" style="text-align: center">
+            <h4 style="font-size: 1.1rem;">Precio actual</h4>
+            <h1><span style="color: #446FDE;font-size: 2.2rem;">€{{ item.price|intcomma }}</span></h1>
             {% if item|color:usr == 'success' and donation.enabled %}
                 <span><i>Estás ganando la subasta hace {{ item.winner_bid.created|timesince }}</i></span>
                 <hr/><br/>
@@ -82,7 +82,6 @@ function userConfirm(name) {
                 {% if item.winner_bid %}
                     <span><i>hace {{ item.winner_bid.created|timesince }}</i></span>
                 {% endif %}
-                <hr/>
             {% endif %}
         </div>
     </div>
@@ -139,7 +138,7 @@ function userConfirm(name) {
             <div class="container-fluid">
                 <div class="col">
                     <div class="row">
-                        <a href="/bases?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
+                        <a href="/bases?id={{ item.id }}" class="btn btn-ok btn-lg btn-block">Participar</a>
                     </div>
                 </div>
             </div>
