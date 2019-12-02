@@ -48,13 +48,13 @@ function userConfirm(name) {
 <!--  Essential META Tags -->
 <meta property="og:title" content="{{item.name}}">
 <meta property="og:description" content="{{item.description}}">
-<meta property="og:image" content="http://educarsiempre.live{% static item.image %}">
-<meta property="og:url" content="http://educarsiempre.live/">
+<meta property="og:image" content="https://mensajeros.misubasta.org{% static item.image %}">
+<meta property="og:url" content="https://mensajeros.misubasta.org/">
 <meta name="twitter:card" content="summary_large_image">
 
 <!--  Non-Essential, But Recommended -->
-<meta property="og:site_name" content="Educar y Crecer">
-<meta name="twitter:site" content="@educarycrecer">
+<meta property="og:site_name" content="Mensajeros de la Paz">
+<meta name="twitter:site" content="@Mensajeros_AR">
 <meta name="twitter:image:alt" content="{{item.name}}">
 {% endblock %}
 
@@ -73,7 +73,7 @@ function userConfirm(name) {
     <div class="container-fluid">
         <div class="card" style="text-align: center">
             <h4 style="font-size: 1.1rem;">Precio actual</h4>
-            <h1><span style="color: #446FDE;font-size: 2.2rem;">€{{ item.price|intcomma }}</span></h1>
+            <h1><span class="bb-{{item|color:usr}}" style="color: #446FDE;font-size: 2.2rem !important;padding: 3px 30px;">€{{ item.price|intcomma }}</span></h1>
 
             <span style="color: grey; font-weight: 200; font-style: italic;">
             {% if item|color:usr == 'success' and donation.enabled %}
@@ -124,7 +124,7 @@ function userConfirm(name) {
         
                 <div id="custom-price" class="container-fluid" style="display: none;">
                     <div class="row" style="justify-content: center;">
-                        <div class="col-6">
+                        <div class="col-8">
                             <fieldset class="form-group" style="text-align: left; margin-top: -1rem;">
                                 <label for="amount" style="color:#446FDE" class="bmd-label-floating">Nuevo monto</label>
                                 <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:5}}">

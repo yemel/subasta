@@ -5,6 +5,7 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.sessions.models import Session
+from django.contrib.auth import login
 
 from web.models import Product, Bid, User, Donation
 
@@ -16,8 +17,8 @@ class RegisterForm(forms.Form):
 
 
 def get_user(request):
-    user_id = request.session.get('user')
-    return user_id and User.objects.get(id=user_id) or None
+    print request.user
+    return None if request.user.is_anonymous() else request.user
 
 
 def get_total_donations():
@@ -35,12 +36,6 @@ def all_auctions(request):
         other_items = Product.objects.all()
 
     return render(request, 'all.html', {'active_items': active_items, 'other_items': other_items, 'usr': user})
-
-
-def active_auctions(request):
-    user = get_user(request)
-    items = Product.objects.filter(bid__user=user).distinct().order_by('id')
-    return render(request, 'active.html', {'items': items, 'usr': user})
 
 
 def item(request, id=None):
@@ -70,24 +65,35 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = User.objects.create(
+                username=form.cleaned_data['tacho'],
                 full_name=form.cleaned_data['pingo'],
                 phone=form.cleaned_data['wango'],
                 email=form.cleaned_data['tacho']
             )
-            request.session['user'] = user.id
+            login(request, user)
             return HttpResponseRedirect('/item/' + request.GET.get('id', 1))
     else:
         form = RegisterForm()
 
     return render(request, 'register.html', {'form': form, 'usr': user})
 
+
 def success(request, id=None):
     bid = Bid.objects.get(id=id)
     return render(request, 'success.html', {'bid': bid})
 
+
 def results(request):
     total = get_total_donations()
     return render(request, 'results.html', {'total': total})
+
+
+def api_signin(request, id, microsecond):
+    print(id, microsecond)
+    u = User.objects.get(id=id)
+    if u.created.microsecond == int(microsecond):
+        login(request, u)
+    return HttpResponseRedirect('/')
 
 
 def api_result(request):

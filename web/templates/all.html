@@ -3,9 +3,20 @@
 {% load humanize %}
 {% load filters %}
 
-{% block title%}#EducarSiempre.live{% endblock %}
+{% block title%}Mensajeros de la Paz{% endblock %}
 
-{% block style %}
+{% block meta %}
+<!--  Essential META Tags -->
+<meta property="og:title" content="{{item.name}}">
+<meta property="og:description" content="{{item.description}}">
+<meta property="og:image" content="https://mensajeros.misubasta.org{% static item.image %}">
+<meta property="og:url" content="https://mensajeros.misubasta.org/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!--  Non-Essential, But Recommended -->
+<meta property="og:site_name" content="Mensajeros de la Paz">
+<meta name="twitter:site" content="@Mensajeros_AR">
+<meta name="twitter:image:alt" content="{{item.name}}">
 {% endblock %}
 
 
@@ -27,12 +38,12 @@
                     <h5 class="mt-0">
                         {{ item.name }}
                     </h5>
-                    <p style="color: #697083;margin-bottom: 0;">{{ item.description|linebreaksbr }}</p>
+                    <p style="color: #697083;margin-bottom: 5px;">{{ item.description|linebreaksbr }}</p>
                 </div>
             </div>
             <div style="text-align: right;">
                 <span style="color: grey;">Última oferta:</span>
-                <span style="margin-left: .3rem; font-size: 1.3rem; color:#446FDE; position: relative; top: 2px;">€{{ item.price|intcomma }}</span>
+                <span class="bb-{{item|color:usr}}" style="margin-left: .3rem; font-size: 1.3rem; color:#446FDE; position: relative; top: 2px;">€{{ item.price|intcomma }}</span>
             </div>
             </div>
         </a>
@@ -52,7 +63,7 @@
                     <h5 class="mt-0">
                         {{ item.name }}
                     </h5>
-                    <p style="color: #697083;margin-bottom: 0;">{{ item.description|linebreaksbr }}</p>
+                    <p style="color: #697083;margin-bottom: 5px;">{{ item.description|linebreaksbr }}</p>
                 </div>
             </div>
             <div style="text-align: right;">
@@ -64,11 +75,4 @@
         <br/>
         {% endfor %}
     </div>
-{% endblock %}
-
-
-{% block script %}
-{% if usr %}
-localStorage.userId = {{ usr.id }};
-{% endif %}
 {% endblock %}
