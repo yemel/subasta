@@ -3,6 +3,17 @@
 
 {% block title %}Bases y Condiciones{% endblock %}
 
+{% block style %}
+    .bases li {
+        margin-bottom: 1rem;
+        font-family: monospace;
+    }
+
+    .bases {
+        padding-left: 1.5rem;
+    }
+
+{% endblock %}
 
 {% block content %}
     {% include "_nav.html" %}
@@ -12,19 +23,15 @@
             <div class="row">
                 <div class="col">
                     <br/>
-                    <h2>Bases y condiciones:</h2>
-                    <ul>
+                    <h2 style="text-align: center; margin-bottom: 1.3rem;">Bases y condiciones</h2>
+                    <ul class="bases">
                     <li>El objetivo de esta subasta es recaudar fondos para los proyectos de niñez que tiene Mensajeros de la Paz en Argentina.</li>
                     
-                    <li>La subasta finalizará el día miércoles 4 de diciembre a las 22hs (hora Madrid), durante el evento "Noche Solidaria por los Chicos de Argentina" a realizarse en el Restaurante Robin Hood (C/ Bravo Murillo 17,19, Madrid).</li>
+                    <li>La subasta finalizará el día miércoles 4 de diciembre alrededor de las 22hs. (Madrid) durante el evento "Noche Solidaria por los Chicos de Argentina" a realizarse en el Restaurante Robin Hood (C/ Bravo Murillo 17,19, Madrid). </li>
 
                     <li>Los participantes de la subasta asumen un compromiso de donación por el monto indicado en su oferta. Los montos serán ofertados en EUROS.</li>
 
-                    <li>El ganador de cada producto será la persona que haya realizado la oferta de mayor valor.</li>
-
-                    <li>Mensajeros de la Paz se pondrá en contacto con la persona ganadora a través de los datos de contacto suministrados. Así mismo, cada persona participante podrá ver en el sitio web www.mensajeros.misubasta.org el resultado de cada subasta luego de finalizada la misma.</li>
-
-                    <li>Una vez anunciado el ganador, éste deberá confirmar el pago a la brevedad.</li>
+                    <li>Los montos serán ofertados en EUROS. El ganador de cada producto será la persona que haya realizado la oferta de mayor valor. Una vez anunciado el ganador, este deberá confirmar el pago a la brevedad. Mensajeros de la Paz se pondrá en contacto con la persona ganadora a través de los datos de contacto suministrados. Así mismo, cada persona participante podrá ver en mensajeros.misubasta.org el resultado de cada subasta luego de finalizada la misma.</li>
 
                     <li>El pago podrá realizarse en efectivo, transferencia bancaria o tarjeta de crédito mediante PayPal.</li>
 
@@ -39,7 +46,7 @@
         <div class="container-fluid">
             <div class="col">
                 <div class="row">
-                    <a href="/register?id={{ next }}" class="btn btn-outline-info btn-lg btn-block">ACEPTAR</a>
+                    <a href="/register?id={{ next }}" class="btn btn-ok btn-lg btn-block">ACEPTAR</a>
                 </div>
             </div>
         </div>
