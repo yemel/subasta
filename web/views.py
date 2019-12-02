@@ -56,7 +56,7 @@ def item(request, id=None):
 
 
 def conditions(request):
-    id = request.GET.get('id', 1)
+    id = request.GET.get('id', None)
     return render(request, 'conditions.html', {'next': id})
 
 

@@ -46,7 +46,11 @@
         <div class="container-fluid">
             <div class="col">
                 <div class="row">
-                    <a href="/register?id={{ next }}" class="btn btn-ok btn-lg btn-block">ACEPTAR</a>
+                    {% if next %}
+                        <a href="/register?id={{ next }}" class="btn btn-ok btn-lg btn-block">ACEPTAR</a>
+                    {% else %}
+                        <a href="/" class="btn btn-ok btn-lg btn-block">VOLVER</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
