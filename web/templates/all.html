@@ -5,6 +5,18 @@
 
 {% block title%}#EducarSiempre.live{% endblock %}
 
+{% block style %}
+.card {
+    border-radius: 0.5rem !important;
+    padding: 1rem;
+}
+
+.card img {
+    border-radius: 10px;
+}
+{% endblock %}
+
+
 {% block content %}
     {% include "_nav.html" with selected='all' %}
 
@@ -13,18 +25,30 @@
 
         {% for item in items %}
         <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
+            <div class="card">
             <div class="media">
-                <img class="mr-3" src="{% static item.image %}"" style="max-width: 15%">
+                <img class="mr-3 " src="{% static item.image %}" style="max-width: 15%">
                 <div class="media-body">
                     <h5 class="mt-0">
                         {{ item.name }}
-                        <span class="badge badge-{{item|color:usr}}" style="float: right;margin-right: 1rem;">€{{ item.price|intcomma }}</span>
                     </h5>
                     <p>{{ item.description|linebreaksbr }}</p>
                 </div>
             </div>
+            <div style="text-align: right;">
+                <span style="color: grey;">Última oferta:</span>
+                <span style="margin-left: .3rem; font-size: 1.3rem; color:#446FDE">€{{ item.price|intcomma }}</span>
+            </div>
+            </div>
         </a>
-        <hr/>
+        <br/>
         {% endfor %}
     </div>
+{% endblock %}
+
+
+{% block script %}
+{% if usr %}
+localStorage.userId = {{ usr }};
+{% endif %}
 {% endblock %}

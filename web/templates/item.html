@@ -73,7 +73,7 @@ function userConfirm(name) {
     <div class="container-fluid">
         <div style="text-align: center">
             <h4>Precio actual</h4>
-            <h1><span class="badge badge-{{item|color:usr}}">${{ item.price|intcomma }}</span></h1>
+            <h1><span class="badge badge-{{item|color:usr}}">€{{ item.price|intcomma }}</span></h1>
             {% if item|color:usr == 'success' and donation.enabled %}
                 <span><i>Estás ganando la subasta hace {{ item.winner_bid.created|timesince }}</i></span>
                 <hr/><br/>
