@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import uuid
+
 from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -64,7 +66,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = User.objects.create(
-                username=form.cleaned_data['tacho'],
+                username=str(uuid.uuid4()),
                 full_name=form.cleaned_data['pingo'],
                 phone=form.cleaned_data['wango'],
                 email=form.cleaned_data['tacho']
