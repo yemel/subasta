@@ -112,13 +112,5 @@
       localStorage.userSecret = {{ user.created.microsecond }};
       </script>
     {% endif %}
-
-    {% if user.is_anonymous %}
-      <script>
-      if(!!localStorage.userId && !!localStorage.userSecret) {
-        window.location = '/api/signin/' + localStorage.userId + '/' + localStorage.userSecret;
-      }
-      </script>
-    {% endif %}
   </body>
 </html>
