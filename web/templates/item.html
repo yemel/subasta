@@ -97,13 +97,13 @@ function userConfirm(name) {
                 <h4>Tu oferta</h4>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-lg btn-secondary active">
-                        <input type="radio" name="options" id="option1" value="{{ item.price|add:200 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:200|intcomma }}
+                        <input type="radio" name="options" id="option1" value="{{ item.price|add:10 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> €{{ item.price|add:10|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-secondary">
-                        <input type="radio" name="options" id="option2" value="{{ item.price|add:500 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:500|intcomma }}
+                        <input type="radio" name="options" id="option2" value="{{ item.price|add:20 }}" autocomplete="off" style="display:none;" onchange="onChange()"> €{{ item.price|add:20|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-secondary">
-                        <input type="radio" name="options" id="option3" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:1000|intcomma }}
+                        <input type="radio" name="options" id="option3" value="{{ item.price|add:50 }}" autocomplete="off" style="display:none;" onchange="onChange()"> €{{ item.price|add:50|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-secondary">
                         <input type="radio" name="options" id="option3" value="OTHER" autocomplete="off" style="display:none;" onchange="onChange()"> OTRO
@@ -117,8 +117,8 @@ function userConfirm(name) {
                     <div class="col-6">
                         <fieldset class="form-group">
                             <label for="amount" class="bmd-label-floating">Nuevo monto</label>
-                            <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:100}}">
-                            <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:100|intcomma }}.</span>
+                            <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:5}}">
+                            <span class="bmd-help">Ingresa un valor superior a €{{ item.price|add:5|intcomma }}.</span>
                         </fieldset>
                     </div>
                 </div>
@@ -139,7 +139,7 @@ function userConfirm(name) {
             <div class="container-fluid">
                 <div class="col">
                     <div class="row">
-                        <a href="/register?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
+                        <a href="/bases?id={{ item.id }}" class="btn btn-outline-info btn-lg btn-block">Quiero participar</a>
                     </div>
                 </div>
             </div>

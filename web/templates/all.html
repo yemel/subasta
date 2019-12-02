@@ -18,7 +18,7 @@
                 <div class="media-body">
                     <h5 class="mt-0">
                         {{ item.name }}
-                        <span class="badge badge-{{item|color:usr}}" style="float: right;margin-right: 1rem;">${{ item.price|intcomma }}</span>
+                        <span class="badge badge-{{item|color:usr}}" style="float: right;margin-right: 1rem;">€{{ item.price|intcomma }}</span>
                     </h5>
                     <p>{{ item.description|linebreaksbr }}</p>
                 </div>

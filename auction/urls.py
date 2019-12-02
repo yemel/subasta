@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^$', views.all_auctions),
     url(r'^active$', views.active_auctions),
     url(r'^item/(?P<id>[0-9]+)$', views.item),
+    url(r'^bases$', views.conditions),
     url(r'^register$', views.register),
     url(r'^success/(?P<id>[0-9]+)$', views.success),
     url(r'^total$', views.results),

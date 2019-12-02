@@ -8,27 +8,33 @@ from django.contrib.sessions.models import Session
 
 from web.models import Product, Bid, User, Donation
 
+
 class RegisterForm(forms.Form):
     pingo = forms.CharField(max_length=100)
     wango = forms.CharField(max_length=20)
     tacho = forms.EmailField(max_length=75)
 
+
 def get_user(request):
     user_id = request.session.get('user')
     return user_id and User.objects.get(id=user_id) or None
+
 
 def get_total_donations():
     donation, _ = Donation.objects.get_or_create(id=1)
     return donation.total() + sum([p.total_price() for p in Product.objects.all()])
 
+
 def all_auctions(request):
     user = get_user(request)
     return render(request, 'all.html', {'items': Product.objects.order_by('id'), 'usr': user})
+
 
 def active_auctions(request):
     user = get_user(request)
     items = Product.objects.filter(bid__user=user).distinct().order_by('id')
     return render(request, 'active.html', {'items': items, 'usr': user})
+
 
 def item(request, id=None):
     donation, _ = Donation.objects.get_or_create(id=1)
@@ -44,6 +50,12 @@ def item(request, id=None):
             return HttpResponseRedirect('/success/%s' % bid.id)
 
     return render(request, 'item.html', {'item': item, 'usr': user, 'donation': donation})
+
+
+def conditions(request):
+    id = request.GET.get('id', 1)
+    return render(request, 'conditions.html', {'next': id})
+
 
 def register(request):
     user = get_user(request)

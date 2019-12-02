@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Bases y Condiciones{% endblock %}
+
+
+{% block content %}
+    {% include "_nav.html" %}
+
+    <form method="POST" autocomplete="off">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <br/>
+                    <h2>Bases y condiciones:</h2>
+                    <ul>
+                    <li>El objetivo de esta subasta es recaudar fondos para los proyectos de niñez que tiene Mensajeros de la Paz en Argentina.</li>
+                    
+                    <li>La subasta finalizará el día miércoles 4 de diciembre a las 22hs (hora Madrid), durante el evento "Noche Solidaria por los Chicos de Argentina" a realizarse en el Restaurante Robin Hood (C/ Bravo Murillo 17,19, Madrid).</li>
+
+                    <li>Los participantes de la subasta asumen un compromiso de donación por el monto indicado en su oferta. Los montos serán ofertados en EUROS.</li>
+
+                    <li>El ganador de cada producto será la persona que haya realizado la oferta de mayor valor.</li>
+
+                    <li>Mensajeros de la Paz se pondrá en contacto con la persona ganadora a través de los datos de contacto suministrados. Así mismo, cada persona participante podrá ver en el sitio web www.mensajeros.misubasta.org el resultado de cada subasta luego de finalizada la misma.</li>
+
+                    <li>Una vez anunciado el ganador, éste deberá confirmar el pago a la brevedad.</li>
+
+                    <li>El pago podrá realizarse en efectivo, transferencia bancaria o tarjeta de crédito mediante PayPal.</li>
+
+                    <li>Los costos de envío están a cargo de la persona ganadora, pudiendo coordinarse una entrega en persona tanto en Madrid como en Buenos Aires.</li>
+
+                    <li>Por consultas, escribir a nocheargentina@mensajerosdelapaz.org.ar</li>
+                </ul>
+                </div>
+            </div
+        </div>
+        <br/>
+        <div class="container-fluid">
+            <div class="col">
+                <div class="row">
+                    <a href="/register?id={{ next }}" class="btn btn-outline-info btn-lg btn-block">ACEPTAR</a>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
