@@ -24,6 +24,7 @@ class Product(models.Model):
     description = models.CharField(max_length=400)
     image = models.URLField(max_length=200)
     start_price = models.IntegerField()
+    order = models.IntegerField(default=1)
 
     def winner_bid(self):
         return self.bid_set.order_by('-price', 'created').first()

@@ -26,7 +26,7 @@
         <br/>
 
         {% if active_items %}
-        <h3 style="color: #697083;font-size: 1.5rem;margin-bottom: 1.2rem;">Productos ofertados</h3>
+        <h3 style="color: #697083;font-size: 1.5rem;margin-bottom: 1.2rem;">Mis subastas</h3>
         {% endif %}
         {% for item in active_items %}
         <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
@@ -51,7 +51,7 @@
 
         {% if active_items %}
         <br/>
-        <h3 style="color: #697083;font-size: 1.5rem;margin-bottom: 1.2rem;">Productos por ofertar</h3>
+        <h3 style="color: #697083;font-size: 1.5rem;margin-bottom: 1.2rem;">Otras subastas</h3>
         {% endif %}
         {% for item in other_items %}
         <a href="/item/{{ item.id }}" style="text-decoration: none; color: inherit;">
