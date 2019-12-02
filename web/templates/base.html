@@ -115,7 +115,7 @@
 
     {% if user.is_anonymous %}
       <script>
-      if(localStorage.userId) {
+      if(!!localStorage.userId && !!localStorage.userSecret) {
         window.location = '/api/signin/' + localStorage.userId + '/' + localStorage.userSecret;
       }
       </script>
