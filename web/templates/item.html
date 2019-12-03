@@ -141,8 +141,8 @@ window.setInterval(function() {
                         <div class="col-8">
                             <fieldset class="form-group" style="text-align: left; margin-top: -1rem;">
                                 <label for="amount" style="color:#446FDE" class="bmd-label-floating">Nuevo monto</label>
-                                <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:10}}">
-                                <span class="bmd-help">Ingresa un valor superior a €{{ item.price|add:10|intcomma }}.</span>
+                                <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:1}}">
+                                <span class="bmd-help">Ingresa un valor superior a €{{ item.price|add:1|intcomma }}.</span>
                             </fieldset>
                         </div>
                     </div>
