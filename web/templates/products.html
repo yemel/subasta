@@ -17,7 +17,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#5DBCD2">
+    <meta name="theme-color" content="#222">
 
     <!-- Material Design for Bootstrap fonts and icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -35,7 +35,7 @@
 
         body {
             color: white;
-            background-color: #5DBCD2;
+            background-color: #222;
         }
 
         .cena {
@@ -66,6 +66,14 @@
             margin-right: 5rem;
         }
 
+        .bb-success {
+        color: white !important;
+        background-color: #446FDE;
+        border-radius: 2rem;
+        padding: 0.5rem 2rem;
+        font-size: 2rem !important;
+      }
+
     </style>
     <title>Mensajeros de la Paz</title>
   </head>
@@ -76,7 +84,7 @@
         <b>Noche por Argentina</b>
     </div>
 
-    <img src="/static/img/logo.png" class="logo"/>
+    <img src="/static/img/logo4.png" class="logo"/>
 
     <div class="slides">
         {% for item in items %}
@@ -88,7 +96,7 @@
                 <div class="col-8" style="text-align: left;">
                     <h1>{{ item.name }}</h2>
                     <p style="font-size: 1.4rem;">{{ item.description|linebreaksbr }}</p><br/>
-                    <h1><span class="badge badge-info">${{ item.price|intcomma }}</span></h1>
+                    <h1><span class="bb-success">€{{ item.price|intcomma }}</span></h1>
                 </div>
             </div>
         </div>
@@ -110,7 +118,7 @@
                 fade: true,
                 cssEase: 'linear',
                 autoplay: true,
-                autoplaySpeed: 4000,
+                autoplaySpeed: 3500,
                 arrows: false,
             });
         });
