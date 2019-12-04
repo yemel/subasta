@@ -75,14 +75,16 @@ window.setInterval(function() {
 {% block content %}
     {% include "_nav.html" %}
 
-    <div class="container-fluid item-img">
-        <div class="row align-items-end" style="height: 100%; color: white;">
-            <div class="col">
-                <h2 style="font-size:1.2rem;">{{ item.name }}</h2>
-                <p style="font-size:0.8rem;">{{ item.description|linebreaksbr }}</p>
+    <a href="/item/image/{{item.id}}">
+        <div class="container-fluid item-img">
+            <div class="row align-items-end" style="height: 100%; color: white;">
+                <div class="col">
+                    <h2 style="font-size:1.2rem;">{{ item.name }}</h2>
+                    <p style="font-size:0.8rem;">{{ item.description|linebreaksbr }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 
     <div class="container-fluid">
         <div class="card" style="text-align: center">

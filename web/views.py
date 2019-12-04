@@ -55,6 +55,11 @@ def item(request, id=None):
     return render(request, 'item.html', {'item': item, 'usr': user, 'donation': donation})
 
 
+def item_image(request, id=None):
+    item = Product.objects.get(id=id)
+    return render(request, 'item_image.html', {'item': item})
+
+
 def conditions(request):
     id = request.GET.get('id', None)
     return render(request, 'conditions.html', {'next': id})

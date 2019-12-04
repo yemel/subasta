@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% load filters %}
+
+{% block style %}
+.img {
+    
+}
+{% endblock %}
+
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block meta %}
+<!--  Essential META Tags -->
+<meta property="og:title" content="{{item.name}}">
+<meta property="og:description" content="{{item.description}}">
+<meta property="og:image" content="https://mensajeros.misubasta.org{% static item.image %}">
+<meta property="og:url" content="https://mensajeros.misubasta.org/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!--  Non-Essential, But Recommended -->
+<meta property="og:site_name" content="Mensajeros de la Paz">
+<meta name="twitter:site" content="@Mensajeros_AR">
+<meta name="twitter:image:alt" content="{{item.name}}">
+{% endblock %}
+
+{% block content %}
+    {% include "_nav.html" %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <img style="width: 100%;" src="{% static item.image %}"/>
+            <h2 style="font-size:1.2rem; margin: 1rem 1rem 0rem; 1rem">{{ item.name }}</h2>
+            <p style="font-size:0.8rem; margin: 1rem;">{{ item.description|linebreaksbr }}</p>
+        </div>
+    </div>
+    <br/>
+    <div class="container-fluid">
+        <div class="col">
+            <div class="row">
+                <a href="/item/{{ item.id }}" class="btn btn-ok btn-lg btn-block">Volver</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
