@@ -154,3 +154,16 @@ def reset(request):
         return HttpResponseRedirect('/')
 
     return render(request, 'reset.html')
+
+
+def toggle_theme(request):
+    request.session['darkMode'] = not request.session.get('darkMode', False)
+    path = request.GET.get('next', '/')
+    return HttpResponseRedirect(path)
+
+# Context Processor
+def dark_mode(request):
+    return {
+        "DARK_MODE": request.session.get('darkMode', False),
+        "RPATH": request.path,
+    }

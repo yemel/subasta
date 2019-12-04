@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^ganadores$', views.winners),
     url(r'^subasta$', views.status),
     url(r'^productos$', views.products),
+    url(r'^toggle-theme$', views.toggle_theme),
     url(r'^api/total$', views.api_result),
     url(r'^api/wining/(?P<id>[0-9]+)$', views.api_wining),
     url(r'^api/signin/(?P<id>[0-9]+)/(?P<microsecond>\w+)$', views.api_signin),

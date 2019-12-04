@@ -164,10 +164,14 @@
                 animation: 0.3s linear 0.9s both fadeIn;
         }
 
+
+        .darkMode {
+            background-color: #000 !important;
+        }
     </style>
     <title>Mensajeros de la Paz</title>
   </head>
-  <body>
+  <body {% if DARK_MODE %}class="darkMode"{% endif %}>
     <div class="container-fluid">
         <div class="row">
             <div class="col">
