@@ -32,7 +32,7 @@ SECRET_KEY = 'c=mhdxwy5)uehk!lkf^t-9v+skd+snbg%^x8ccwtkmm$z0g8=#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "herokuapp.com", "educarsiempre.live"]
+ALLOWED_HOSTS = ["localhost", "herokuapp.com", "misubasta.org"]
 
 
 # Application definition
@@ -63,8 +63,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+# SECURE_SSL_REDIRECT = False # TODO: CHANGE THIS
 
 ROOT_URLCONF = 'auction.urls'
 
