@@ -87,7 +87,7 @@ window.setInterval(function() {
     <div class="container-fluid">
         <div class="card" style="text-align: center">
             <h4 style="font-size: 1.1rem;">Precio actual</h4>
-            <h1><span class="bb-{{item|color:usr}}" style="color: #446FDE;font-size: 2.2rem !important;padding: 3px 30px;">${{ item.price|intcomma }} ARS</span></h1>
+            <h1><span class="bb-{{item|color:usr}}" style="color: #446FDE;font-size: 2.2rem !important;padding: 3px 30px;">${{ item.price|intcomma }}</span></h1>
 
             <span style="color: grey; font-weight: 200; font-style: italic;">
             {% if item|color:usr == 'success' and donation.enabled %}

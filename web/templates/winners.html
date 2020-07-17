@@ -21,7 +21,7 @@
                     {% endif %}
                     {% for bid in item.winners %}
                     <div>
-                        {{ bid.user.full_name }} ofertó ${{ bid.price|intcomma }} ARS<br/>
+                        {{ bid.user.full_name }} ofertó ${{ bid.price|intcomma }}<br/>
                         Tel: {{ bid.user.phone }} - Email: {{ bid.user.email }}
                     </div><br/>
                     {% endfor %}
