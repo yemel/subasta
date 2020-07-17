@@ -123,13 +123,13 @@ window.setInterval(function() {
                 <h4>Tu oferta</h4>
                 <div style="display: block;" class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-lg btn-rnd active">
-                        <input type="radio" name="options" id="option1" value="{{ item.price|add:10 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:10|intcomma }} ARS
+                        <input type="radio" name="options" id="option1" value="{{ item.price|add:500 }}" autocomplete="off" checked style="display:none;" onchange="onChange()"> ${{ item.price|add:500|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-rnd">
-                        <input type="radio" name="options" id="option2" value="{{ item.price|add:50 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:50|intcomma }} ARS
+                        <input type="radio" name="options" id="option2" value="{{ item.price|add:1000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:1000|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-rnd">
-                        <input type="radio" name="options" id="option3" value="{{ item.price|add:100 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:100|intcomma }} ARS
+                        <input type="radio" name="options" id="option3" value="{{ item.price|add:5000 }}" autocomplete="off" style="display:none;" onchange="onChange()"> ${{ item.price|add:5000|intcomma }}
                     </label>
                     <label class="btn btn-lg btn-rnd">
                         <input type="radio" name="options" id="option3" value="OTHER" autocomplete="off" style="display:none;" onchange="onChange()"> OTRO
@@ -141,8 +141,8 @@ window.setInterval(function() {
                         <div class="col-8">
                             <fieldset class="form-group" style="text-align: left; margin-top: -1rem;">
                                 <label for="amount" style="color:#446FDE" class="bmd-label-floating">Nuevo monto</label>
-                                <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:1}}">
-                                <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:1|intcomma }}.</span>
+                                <input type="number" class="form-control" id="amount" name="amount" min="{{item.price|add:200}}">
+                                <span class="bmd-help">Ingresa un valor superior a ${{ item.price|add:200|intcomma }}.</span>
                             </fieldset>
                         </div>
                     </div>
