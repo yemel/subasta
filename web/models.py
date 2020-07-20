@@ -23,6 +23,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
     image = models.URLField(max_length=200)
+    image_big = models.URLField(max_length=200, null=True)
     start_price = models.IntegerField()
     order = models.IntegerField(default=1)
 

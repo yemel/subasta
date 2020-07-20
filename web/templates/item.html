@@ -15,12 +15,6 @@
         cursor: pointer;
     }
 
-    {% if item.id == 32 %}
-    .item-img {
-        background-position: 0% 75%;
-    }
-    {% endif %}
-
     .offer {
         margin: 3rem;
         line-height: 5rem!important;
@@ -31,6 +25,19 @@
         background-color: #545b62!important;
         border-color: #4e555b!important;
     }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            max-width: 82% !important;
+        }
+    }
+
+    @media (min-width: 1240px) {
+        .modal-dialog {
+            max-width: 65% !important;
+        }
+    }
+
 {% endblock %}
 
 {% block script %}
@@ -202,7 +209,8 @@ window.setInterval(function() {
           </button>
         </div>
         <div class="modal-body" style="padding: 20px 0 0 0;">
-            <img src="{% static item.image %}" style="width: 100%;"/>
+            <img class="d-sm-none" src="{% static item.image %}" style="width: 100%;"/>
+            <img class="d-none d-sm-inline" src="{% static item.image_big %}" style="width: 100%;"/>
         </div>
       </div>
     </div>
