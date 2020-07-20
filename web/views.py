@@ -182,7 +182,7 @@ def dark_mode(request):
 
 
 def manifest(request):
-    return render(request, 'manifest.json')
+    return render(request, 'manifest.json', content_type='application/json')
 
 def sw(request):
-    return render(request, 'sw.js')
+    return render(request, 'sw.js', content_type='application/javascript')
