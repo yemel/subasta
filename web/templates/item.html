@@ -93,7 +93,8 @@ window.setInterval(function() {
         </div>
 
     <div class="container-fluid">
-        <div class="card" style="text-align: center">
+        <div class="row justify-content-md-center">
+        <div class="card col-md-6" style="text-align: center; margin: 0 1rem;">
             <h4 style="font-size: 1.1rem;">Precio actual</h4>
             <h1><span class="bb-{{item|color:usr}}" style="color: #446FDE;font-size: 2.2rem !important;padding: 3px 30px;">${{ item.price|intcomma }}</span></h1>
 
@@ -107,13 +108,14 @@ window.setInterval(function() {
             {% endif %}
             </span>
         </div>
+        </div>
     </div>
 
     {% if item|color:usr == 'success' and donation.enabled %}
         <br/>
         <div class="container-fluid">
-            <div class="col">
-                <div class="row">
+            <div class="row justify-content-md-center">
+                    <div class="col-md-6">
                     <a href="/" class="btn btn-ok btn-lg btn-block">Ver todas las subastas</a>
                 </div>
             </div>
@@ -127,7 +129,8 @@ window.setInterval(function() {
         {% csrf_token %}
         <br/>
         <div class="container-fluid">
-            <div class="card" style="text-align: center">
+            <div class="row justify-content-md-center">
+            <div class="card col-md-6" style="text-align: center; margin: 0 1rem;">
                 <h4>Tu oferta</h4>
                 <div style="display: block;" class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-lg btn-rnd active">
@@ -155,14 +158,14 @@ window.setInterval(function() {
                         </div>
                     </div>
                 </div>
-
+            </div>
             </div>
         </div>
 
         <br/>
         <div class="container-fluid">
-            <div class="col">
-                <div class="row">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
                     <button type="submit" class="btn btn-ok btn-lg btn-block">Ofertar</button>
                     <a href="/" class="btn btn-back btn-lg btn-block">VOLVER</a>
                 </div>
@@ -174,8 +177,8 @@ window.setInterval(function() {
         {% if not usr %}
             <br/>
             <div class="container-fluid">
-                <div class="col">
-                    <div class="row">
+                <div class="row justify-content-md-center">
+                        <div class="col-md-6">
                         <a href="/bases?id={{ item.id }}" class="btn btn-ok btn-lg btn-block">Participar</a>
                         <a href="/" class="btn btn-back btn-lg btn-block">VOLVER</a>
                     </div>
@@ -186,7 +189,8 @@ window.setInterval(function() {
     {% else %}
         <br/>
         <div class="container-fluid">
-            <div class="card" style="text-align: center">
+            <div class="row justify-content-md-center">
+            <div class="card col-md-6" style="text-align: center">
                 {% if usr and item|color:usr == 'success' %}
                     <h4>Ganaste</h4>
                     <i>¡Felicitaciones! Te contactaremos a la brevedad para concretar el pago y entregarte {{ item.name }}.<br/>Podés escribirnos a: <a href="mailto:nocheargentina@mensajerosdelapaz.org.ar">nocheargentina@mensajerosdelapaz.org.ar</a></i>
@@ -194,6 +198,7 @@ window.setInterval(function() {
                     <h4>Subasta terminada</h4>
                     <i>Ya no se aceptan más ofertas.</i>
                 {% endif %}
+            </div>
             </div>
         </div>
     {% endif %}
