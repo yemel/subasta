@@ -8,7 +8,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-153674284-1');
     </script>
 
@@ -170,6 +169,16 @@
         }
     </style>
     <title>Mensajeros de la Paz</title>
+    <!-- PushAlert -->
+    <script type="text/javascript">
+        (function(d, t) {
+            var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+            g.src = "https://cdn.pushalert.co/integrate_b5bab4cd378a84b6f32cafc376390cbf.js";
+            s.parentNode.insertBefore(g, s);
+        }(document, "script"));
+    </script>
+    <!-- End PushAlert -->
   </head>
   <body {% if DARK_MODE %}class="darkMode"{% endif %}>
     <div class="container-fluid">
@@ -198,6 +207,12 @@
             </div>
         </div>
     </div>
+
+    {% if bid.product.segment %}
+    <script>
+            (pushalertbyiw = window.pushalertbyiw || []).push(['subscribeToSegment', {{ bid.product.segment }} ]); //You can get segment ID from dashboard or via REST API
+        </script>
+    {% endif %}
     
 
     <!-- Optional JavaScript -->

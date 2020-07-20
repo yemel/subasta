@@ -25,6 +25,7 @@ class Product(models.Model):
     image = models.URLField(max_length=200)
     image_big = models.URLField(max_length=200, null=True)
     start_price = models.IntegerField()
+    segment = models.IntegerField(null=True)
     order = models.IntegerField(default=1)
 
     def winner_bid(self):
