@@ -179,3 +179,10 @@ def dark_mode(request):
         "DARK_MODE": request.session.get('darkMode', False),
         "RPATH": request.path,
     }
+
+
+def manifest(request):
+    return render(request, 'manifest.json')
+
+def sw(request):
+    return render(request, 'sw.js')
