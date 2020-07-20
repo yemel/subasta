@@ -13,9 +13,9 @@ from web.models import Product, Bid, User, Donation
 
 
 class RegisterForm(forms.Form):
-    pingo = forms.CharField(max_length=100)
-    wango = forms.CharField(max_length=20)
-    tacho = forms.EmailField(max_length=75)
+    uname = forms.CharField(max_length=100)
+    uphone = forms.CharField(max_length=20)
+    uemail = forms.EmailField(max_length=75)
 
 
 def get_user(request):
@@ -70,12 +70,19 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = User.objects.create(
-                username=str(uuid.uuid4()),
-                full_name=form.cleaned_data['pingo'],
-                phone=form.cleaned_data['wango'],
-                email=form.cleaned_data['tacho']
-            )
+            email = form.cleaned_data['uemail'].lower()
+            users = User.objects.filter(email=email)
+
+            if users.exists():
+                user = users[0]
+            else:
+                user = User.objects.create(
+                    username=str(uuid.uuid4()),
+                    full_name=form.cleaned_data['uname'],
+                    phone=form.cleaned_data['uphone'],
+                    email=form.cleaned_data['uemail']
+                )
+
             login(request, user)
             return HttpResponseRedirect('/item/' + request.GET.get('id', 1))
     else:
