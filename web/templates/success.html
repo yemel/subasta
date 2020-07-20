@@ -210,8 +210,8 @@
 
     {% if bid.product.segment %}
     <script>
-            (pushalertbyiw = window.pushalertbyiw || []).push(['subscribeToSegment', {{ bid.product.segment }} ]); //You can get segment ID from dashboard or via REST API
-        </script>
+        (pushalertbyiw = window.pushalertbyiw || []).push(['subscribeToSegment', {{ bid.product.segment }} ]);
+    </script>
     {% endif %}
     
 
