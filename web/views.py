@@ -152,7 +152,7 @@ def status(request):
         donation, _ = Donation.objects.get_or_create(id=1)
         donation.enabled = request.POST['enabled'] == 'yes'
         donation.save()
-        return HttpResponseRedirect('/subasta')
+        return HttpResponseRedirect('/stop')
     
     return render(request, 'status.html', {'donation': donation, 'usr': user})
 
