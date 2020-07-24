@@ -53,6 +53,7 @@ def send_outbid(bid):
         'FIRST_NAME': bid.user.name(),
         'TITLE': bid.product.name,
         'PRICE': bid.price,
+        'PID': bid.product.id,
     }
     send_templated_mail(
         template_name='outbid',
