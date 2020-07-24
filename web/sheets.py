@@ -73,4 +73,37 @@ def send_outbid_for_product(product):
         users.append(bid.user)
         send_outbid(bid)
         print('Sending outbid to', bid.user.name(), bid.price)
-    
+
+
+def send_winner(bid):
+    merge_data = {
+        'FIRST_NAME': bid.user.name(),
+        'TITLE': bid.product.name,
+        'PRICE': bid.price,
+    }
+    send_templated_mail(
+        template_name='winner',
+        from_email='Mensajeros de la Paz <mensajeros@misubasta.org>',
+        recipient_list=[bid.user.email],
+        context=merge_data
+    )
+
+def send_all_winners():
+    for p in Product.objects.all():
+        bid = p.winner_bid()
+        if bid:
+            send_winner(bid)
+
+
+def send_donate(bid):
+    merge_data = {
+        'FIRST_NAME': bid.user.name(),
+        'PRICE': bid.price,
+        'MP_LINK': 'https://mercadopago.com',
+    }
+    send_templated_mail(
+        template_name='donate',
+        from_email='Mensajeros de la Paz <mensajeros@misubasta.org>',
+        recipient_list=[bid.user.email],
+        context=merge_data
+    )
