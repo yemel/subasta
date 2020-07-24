@@ -41,7 +41,35 @@ def send_today(user):
     }
     send_templated_mail(
         template_name='today',
-        from_email='Mensajeros de la Paz <mensajeros@misubasta.org>', # request.user.get_full_name()
+        from_email='Mensajeros de la Paz <mensajeros@misubasta.org>',
         recipient_list=[user.email],
         context=merge_data
     )
+
+
+
+def send_outbid(bid):
+    merge_data = {
+        'FIRST_NAME': bid.user.name(),
+        'TITLE': bid.product.name,
+        'PRICE': bid.price,
+    }
+    send_templated_mail(
+        template_name='outbid',
+        from_email='Mensajeros de la Paz <mensajeros@misubasta.org>',
+        recipient_list=[bid.user.email],
+        context=merge_data
+    )
+
+def send_outbid_for_product(product):
+    bids = product.bid_set.order_by('-price')
+    if not bids: return
+    users = [bids[0].user]
+
+    for bid in bids[1:]:
+        if bid.user in users:
+            continue
+        users.append(bid.user)
+        send_outbid(bid)
+        print('Sending outbid to', bid.user.name(), bid.price)
+    
