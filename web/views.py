@@ -55,6 +55,8 @@ def item(request, id=None):
             try:
                 if old_winner:
                     sheets.send_outbid(old_winner)
+            except:
+                pass
             return HttpResponseRedirect('/success/%s' % bid.id)
 
     return render(request, 'item.html', {'item': item, 'usr': user, 'donation': donation})
