@@ -8,7 +8,7 @@ Estás perdiendo la subasta de {{ TITLE|safe }}
 Hola {{ FIRST_NAME }},
  
 Otro usuario superó tu oferta de ${{ PRICE|intcomma }} por "{{ TITLE }}". Estás perdiendo la subasta, ingresá al sitio ahora para hacer una nueva oferta.    
-[  ]( # )        [ Ir a la subasta ]( https://mensajeros.misubasta.org/?utm_source=misubasta&utm_medium=emails&utm_campaign=estas_perdiendo )       
+[  ]( # )        [ Ir a la subasta ]( https://mensajeros.misubasta.org/item/{{ PID }}?utm_source=misubasta&utm_medium=emails&utm_campaign=estas_perdiendo )       
 [  ]( # )             [  ]( # )
 [  ]( # )  
 
@@ -518,7 +518,7 @@ ul {mso-special-format:bullet;}
                                                                 <tbody><tr>
                                                                     <td width="auto" valign="middle" bgcolor="#0092ff" align="center" height="40" style="font-size:18px; font-family:Arial,Helvetica,sans-serif; color:#ffffff; font-weight:normal; padding-left:20px; padding-right:20px; vertical-align: middle; background-color:#0092ff;border-radius:4px;border-top:0px None #000;border-right:0px None #000;border-bottom:0px None #000;border-left:0px None #000;">
                                                                         <span style="color:#ffffff; font-weight:normal;">
-                                                                                <a style="text-decoration:none; color:#ffffff; font-weight:normal;" target="_blank" href="https://mensajeros.misubasta.org/?utm_source=misubasta&amp;utm_medium=emails&amp;utm_campaign=estas_perdiendo">Ir a la subasta</a>
+                                                                                <a style="text-decoration:none; color:#ffffff; font-weight:normal;" target="_blank" href="https://mensajeros.misubasta.org/item/{{ PID }}?utm_source=misubasta&amp;utm_medium=emails&amp;utm_campaign=estas_perdiendo">Ir a la subasta</a>
                                                                             </span>
                                                                     </td>
                                                                 </tr></tbody></table>

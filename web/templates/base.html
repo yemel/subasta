@@ -7,7 +7,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-153674284-1');
     </script>
 
@@ -139,22 +138,9 @@
 
     </style>
     <style>{% block style %}{% endblock %}</style>
-    
 
     <title>{% block title %}{% endblock %}</title>
     {% block meta %}{% endblock %}
-
-    <!-- PushAlert -->
-    <script type="text/javascript">
-      (function(d, t) {
-              var g = d.createElement(t),
-              s = d.getElementsByTagName(t)[0];
-              g.src = "https://cdn.pushalert.co/integrate_b5bab4cd378a84b6f32cafc376390cbf.js";
-              s.parentNode.insertBefore(g, s);
-      }(document, "script"));
-    </script>
-    <!-- End PushAlert -->
-
   </head>
   <body {% if DARK_MODE %}class="darkMode"{% endif %}>
     {% block content %}{% endblock %}
@@ -166,11 +152,5 @@
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
     <script>{% block script %}{% endblock %}</script>
 
-    {% if not user.is_anonymous %}
-      <script>
-      localStorage.userId = {{ user.id }};
-      localStorage.userSecret = {{ user.created.microsecond }};
-      </script>
-    {% endif %}
   </body>
 </html>
