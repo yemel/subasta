@@ -1,7 +1,7 @@
 {% load humanize %}
 
 {% block subject %}
-Estás perdiendo la subasta de "{{ TITLE }}"
+Estás perdiendo la subasta de {{ TITLE|safe }}
 {% endblock %}
 
 {% block plain %}
