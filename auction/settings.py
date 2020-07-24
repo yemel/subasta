@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     
     'widget_tweaks',
     'django_extensions',
+    'anymail',
 
     'web',
 ]
@@ -84,6 +85,13 @@ TEMPLATES = [
         },
     },
 ]
+
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": "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",
+}
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+DEFAULT_FROM_EMAIL = "mensajeros@misubasta.org"
+SERVER_EMAIL = "mensajeros@misubasta.org"
 
 WSGI_APPLICATION = 'auction.wsgi.application'
 
