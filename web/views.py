@@ -10,6 +10,7 @@ from django.contrib.sessions.models import Session
 from django.contrib.auth import login
 
 from web.models import Product, Bid, User, Donation
+from web import sheets
 
 
 class RegisterForm(forms.Form):
@@ -49,7 +50,11 @@ def item(request, id=None):
         bid_price = int(request.POST.get('amount')) if bid_price == "OTHER" else int(bid_price)
 
         if bid_price > item.price():
+            old_winner = item.winner_bid()
             bid = Bid.objects.create(user=user, product=item, price=bid_price)
+            try:
+                if old_winner:
+                    sheets.send_outbid(old_winner)
             return HttpResponseRedirect('/success/%s' % bid.id)
 
     return render(request, 'item.html', {'item': item, 'usr': user, 'donation': donation})
